@@ -24,19 +24,40 @@ window.onload = function() {
     const palos = ["♦", "♥", "♠", "♣"];
     // para obtener un indice aleatorio del arreglo
     const palosRandoms = Math.floor(Math.random() * palos.length);
+    // declarando la varible color
+    let color = "";
+    // condicion para que se cambie de color los palos
+    if (palos[palosRandoms] === "♦" || palos[palosRandoms] === "♥") {
+      color = "red";
+    } else {
+      color = "black";
+    }
+    let backgroundImage = "";
+    if (valores[valoresRandoms] === "k") {
+      backgroundImage: "https://cdn.leonardo.ai/users/f8cb4ac8-b908-479c-a409-451cbb88e68a/generations/d580f5a4-c16a-4836-9a66-60ec6d6cafd5/Default_Create_a_regal_poker_card_featuring_a_majestic_king_se_3.jpg";
+    } else {
+      backgroundImage: none;
+    }
     // seleccionamos a todos los elementos de la clase palos y lo guardamos en una varible
     const $PALOS_DOM = document.querySelectorAll(".palos");
-    /* problema: textContent no puede agregar contenido a dos elementos a la vez
-       solucion: convertir la seleccion en un arreglo(con dos elementos iguales) luego iterar cada elemento 
-    usando el metodo forEach de arrays y darle la condicion de que a cada elemnento se le modfique el contenido
-    por un indice aleatorio del arrray palos */
+    /* problema: textContent no puede agregar contenido a dos elementos a la vez(en general esque no se le puede
+       aplicar una propiedad de array porque es un nodeList)
+       solucion: convertir la seleccion en un arreglo(con dos elementos iguales,en este caso) luego 
+       iterar cada elemento usando el metodo forEach de arrays y darle la condicion de que a cada 
+       elemnento se le modfique el contenido por un indice aleatorio del arrray palos */
     // Convertir NodeList a Array y usar forEach Array.from() y aplicar el metodo forEach
+    /*  Node list(lista de nodos): cuando se les esta intentando aplicar metodos de array que no
+     esta permitido en una lista de nodos, primero se debe convertir a un arra usando el metodo 
+     Array.from() depues se debe aplicar metodos de array
+      a cada uno por separado por ell se recomienda usar forEach para iterar */
+    // el forEach se le aplica a la seleccion o conjunto de elementos
+    // una node list se produce cuando se usa querySelectorAll o getElementByClasName(ya no se usa)
     Array.from($PALOS_DOM).forEach(element => {
+      // Modificar el contenido de cada uno de los elementos con un palo al azar
+      element.style.color = color;
       // Modificar el contenido de cada uno de los elementos con un palo al azar
       element.textContent = palos[palosRandoms];
     });
-
-    // generadorDePalos();
 
     function botonGeneradorDeCartas() {
       let $botonDeCartas = document.getElementById("boton");
