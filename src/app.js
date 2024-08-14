@@ -1,10 +1,7 @@
 /* eslint-disable */
 import "bootstrap";
 import "./style.css";
-
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
-
+// onload es un evento que nos indica cada vez que se refresca
 window.onload = function() {
   //write your code here
   function generadorDeCartas() {
@@ -18,7 +15,6 @@ window.onload = function() {
     $NUMBER_DOM.textContent = valores[valoresRandoms];
     // return no es importante porque el DOM hace ese trabajo de retornarnos pero en el browser
     // return `${valores[valoresRandoms]}`;
-
     // 2da arreglo PALOS O ICONOS
 
     const palos = ["♦", "♥", "♠", "♣"];
@@ -32,14 +28,15 @@ window.onload = function() {
     } else {
       color = "black";
     }
-    let backgroundImage = "";
-    if (valores[valoresRandoms] === "k") {
-      backgroundImage: "https://cdn.leonardo.ai/users/f8cb4ac8-b908-479c-a409-451cbb88e68a/generations/d580f5a4-c16a-4836-9a66-60ec6d6cafd5/Default_Create_a_regal_poker_card_featuring_a_majestic_king_se_3.jpg";
-    } else {
-      backgroundImage: none;
-    }
+    // let backgroundImage = "";
+    // if (valores[valoresRandoms] === "k") {
+    //   backgroundImage: "https://cdn.leonardo.ai/users/f8cb4ac8-b908-479c-a409-451cbb88e68a/generations/d580f5a4-c16a-4836-9a66-60ec6d6cafd5/Default_Create_a_regal_poker_card_featuring_a_majestic_king_se_3.jpg";
+    // } else {
+    //   backgroundImage: none;
+    // }
     // seleccionamos a todos los elementos de la clase palos y lo guardamos en una varible
     const $PALOS_DOM = document.querySelectorAll(".palos");
+    // este paso queda invalido porque querySelectorAll tranforma a los elementos en un arreglo
     /* problema: textContent no puede agregar contenido a dos elementos a la vez(en general esque no se le puede
        aplicar una propiedad de array porque es un nodeList)
        solucion: convertir la seleccion en un arreglo(con dos elementos iguales,en este caso) luego 
@@ -52,7 +49,8 @@ window.onload = function() {
       a cada uno por separado por ell se recomienda usar forEach para iterar */
     // el forEach se le aplica a la seleccion o conjunto de elementos
     // una node list se produce cuando se usa querySelectorAll o getElementByClasName(ya no se usa)
-    Array.from($PALOS_DOM).forEach(element => {
+    // Array.of($PALOS_DOM.forEach(element => {...) ya no es util el array.of para convertir en arreglo
+    $PALOS_DOM.forEach(element => {
       // Modificar el contenido de cada uno de los elementos con un palo al azar
       element.style.color = color;
       // Modificar el contenido de cada uno de los elementos con un palo al azar
@@ -68,7 +66,10 @@ window.onload = function() {
 
   // llamando a la funcion
   generadorDeCartas();
+  // intervalo de 10 seg
+  setInterval(generadorDeCartas, 10000);
 };
+
 // ASIGNACION AL BOTON para que ejecute el CAMBIO DE CARTA
 // primero ubicamos document.getElementById("boton"); dentro de un espacio de memoria
 
