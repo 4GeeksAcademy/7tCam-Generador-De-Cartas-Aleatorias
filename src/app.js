@@ -4,12 +4,13 @@ import "./style.css";
 // onload es un evento que nos indica cada vez que se refresca
 window.onload = function() {
   //write your code here
-  function generadorDeCartas() {
+  function generadorDeCarta() {
     // arreglo que contiene los valores de las cards
     const valores = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
     // valores random del arreglo y guardados en un espacio de memoria
     let valoresRandoms = Math.floor(Math.random() * valores.length);
     // ACCEDIENDO AL ELEMENTO Y GUARDANDOLO en un espacio de memoria para reutilizarlo
+    // OJO que si lo llevo arriba(linea 14 y 16) como me dijo el bro sale error
     const $NUMBER_DOM = document.getElementById("number");
     // CAMBIANDO EL CONTENIDO del elemento de id number y que se modifique por una posicion random del arreglo
     $NUMBER_DOM.textContent = valores[valoresRandoms];
@@ -56,19 +57,40 @@ window.onload = function() {
       // Modificar el contenido de cada uno de los elementos con un palo al azar
       element.textContent = palos[palosRandoms];
     });
-
-    function botonGeneradorDeCartas() {
-      let $botonDeCartas = document.getElementById("boton");
-      $botonDeCartas.addEventListener("click", generadorDeCartas);
-    }
-    botonGeneradorDeCartas();
+    // $botonDeCartas.addEventListener("click", (parrametro)=>{toda la funcion});
+    // OTRA MANERA
+    // function botongeneradorDeCarta() {
+    //   $botonDeCartas.addEventListener("click", generadorDeCarta);
+    // }
+    // botongeneradorDeCarta();
   }
+  // llamando a la funcion para que funcione, xq sino lo llamo no se activa
+  generadorDeCarta();
+  // 1) selecion
+  let $botonDeCartas = document.getElementById("boton");
+  //        (evento , especificar que por cada click que queremos que se ejecute en este caso una funcion)
+  // 2) evento
+  $botonDeCartas.addEventListener("click", generadorDeCarta);
 
-  // llamando a la funcion
-  generadorDeCartas();
+  // vi  que este intervalo tmb se puede poner fuera de la funcion donde recomiendas ejecutarlo
   // intervalo de 10 seg
-  setInterval(generadorDeCartas, 10000);
+  setInterval(generadorDeCarta, 10000);
+  // asignar la funcion de aplicar tamano al boton
+  document.getElementById("btnnn").addEventListener("click", aplicarSize);
+  // function para aplicar el tamano de la carta segun el valor que reciba el input
 };
+function aplicarSize() {
+  let ancho = document.getElementById("cardWidth").value;
+  let alto = document.getElementById("cardHeight").value;
+  let tarjeta = document.getElementById("tarjeta");
+  // codicion para obtener el ancho y el alto en pixeles
+  if (ancho) {
+    tarjeta.style.width = ancho + "px";
+  }
+  if (alto) {
+    tarjeta.style.height = alto + "px";
+  }
+}
 
 // ASIGNACION AL BOTON para que ejecute el CAMBIO DE CARTA
 // primero ubicamos document.getElementById("boton"); dentro de un espacio de memoria
