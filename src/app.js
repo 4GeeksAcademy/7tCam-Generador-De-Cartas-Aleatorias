@@ -77,8 +77,8 @@ window.onload = function() {
   setInterval(generadorDeCarta, 10000);
   // asignar la funcion de aplicar tamano al boton
   document.getElementById("btnnn").addEventListener("click", aplicarSize);
-  // function para aplicar el tamano de la carta segun el valor que reciba el input
 };
+// function para aplicar el tamano de la carta segun el valor que reciba el input
 function aplicarSize() {
   let ancho = document.getElementById("cardWidth").value;
   let alto = document.getElementById("cardHeight").value;
@@ -91,44 +91,3 @@ function aplicarSize() {
     tarjeta.style.height = alto + "px";
   }
 }
-
-// ASIGNACION AL BOTON para que ejecute el CAMBIO DE CARTA
-// primero ubicamos document.getElementById("boton"); dentro de un espacio de memoria
-
-// let button = document.getElementById("boton");
-
-// button.addEventListener asigna la funcion cambiarCarta hacia un evento click para generar una nueva carta por cada click
-// button.addEventListener("click", cambiarCarta);
-
-// TEMPORIZADOR para que me genere cada 5seg una nueva carta
-
-// setInterval(generadorDeValores, 5000);
-
-// CONDICION DE COLORES de los palos(♦ ♥ ♠ ♣)
-
-// if (palos[palosRandoms] === "♦" || palos[palosRandoms] === "♥") {
-//   color = "red";
-// } else {
-//   color = "black";
-// }
-
-// COLOR DE LOS PALOS DE LA CABEZA DE LA CARTA
-
-// let colorHeader = document.getElementById("palos");
-// // colorHeader.textContent = palos[palosRandoms];
-// // colorHeader.style.color = color;
-// // COLOR DE LOS PALOS DEL PIE DE LA CARTA
-// let colorFooter = document.getElementById("palos2");
-// colorFooter.textContent = palos[palosRandoms];
-// colorFooter.style.color = color;
-
-// // genera nuevos valores y actulizara el dom con estos nuevos valores
-// const cambiarCarta = () => {
-//   const valor = generadorDeValores();
-//   const palos = generadorDePalos();
-
-// HACIENDO QUE LOS ICONOES DEL PALOS Y PALOS2 HAGAN CASO A UN SOLO LLAMADO
-
-//   document.querySelector("#number").innerHTML = valor;
-//   document.querySelector("#palos").innerHTML = palos;
-//   document.querySelector("#palos2").innerHTML = palos;
